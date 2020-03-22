@@ -1,8 +1,8 @@
-import { hbs } from "ember-cli-htmlbars";
-import { linkTo } from "@storybook/addon-links";
+import { hbs } from 'ember-cli-htmlbars';
+import { linkTo } from '@storybook/addon-links';
 
 export default {
-  title: "Welcome"
+  title: 'Welcome'
 };
 
 export const ToStorybook = () => ({
@@ -13,10 +13,10 @@ export const ToStorybook = () => ({
     </div>
   `,
   context: {
-    onClick: linkTo("Button")
+    onClick: linkTo('Button')
   }
 });
 
 ToStorybook.story = {
-  name: "Storybook"
+  name: 'Storybook'
 };

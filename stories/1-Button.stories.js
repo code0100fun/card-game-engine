@@ -1,8 +1,8 @@
-import { hbs } from "ember-cli-htmlbars";
-import { action } from "@storybook/addon-actions";
+import { hbs } from 'ember-cli-htmlbars';
+import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Button"
+  title: 'Button'
 };
 
 export const Text = () => ({
@@ -11,7 +11,7 @@ export const Text = () => ({
       Example Button
     </button>`,
   context: {
-    onClick: action("clicked")
+    onClick: action('clicked')
   }
 });
 
@@ -24,6 +24,6 @@ export const Emoji = () => ({
     </button>
   `,
   context: {
-    onClick: action("clicked")
+    onClick: action('clicked')
   }
 });
