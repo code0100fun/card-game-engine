@@ -21,3 +21,39 @@
 .story-container {
   @apply m-2;
 }
+
+.card-size-standard-xs {
+  @apply w-10 h-14;
+}
+
+.card-size-standard-sm {
+  @apply w-15 h-21;
+}
+
+.card-size-standard-md {
+  @apply w-20 h-28;
+}
+
+.card-size-standard-lg {
+  @apply w-25 h-35;
+}
+
+.card-size-standard-xl {
+  @apply w-30 h-42;
+}
+
+.card-size-standard-2xl {
+  @apply w-35 h-49;
+}
+
+.card-size-standard-3xl {
+  @apply w-40 h-56;
+}
+
+.card-size-standard-4xl {
+  @apply w-45 h-63;
+}
+
+.card-size-standard-5xl {
+  @apply w-50 h-70;
+}
