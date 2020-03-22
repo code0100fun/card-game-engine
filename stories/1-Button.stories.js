@@ -7,9 +7,24 @@ export default {
 
 export const Text = () => ({
   template: hbs`
-    <button type="button" {{on "click" (fn this.onClick)}}>
-      Example Button
-    </button>`,
+    <div class="story-container">
+      <button class="btn btn-blue" type="button" {{on "click" (fn this.onClick)}}>
+        Example Button
+      </button>
+    </div>`,
+  context: {
+    onClick: action('clicked')
+  }
+});
+
+export const Outline = () => ({
+  template: hbs`
+    <div class="story-container">
+      <button class="btn btn-outline-dark" type="button" {{on "click" (fn this.onClick)}}>
+        Example Button
+      </button>
+    </div>
+  `,
   context: {
     onClick: action('clicked')
   }
@@ -17,11 +32,13 @@ export const Text = () => ({
 
 export const Emoji = () => ({
   template: hbs`
-    <button type="button" {{on "click" (fn this.onClick)}}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </button>
+    <div class="story-container">
+      <button class="btn btn-outline-dark" type="button" {{on "click" (fn this.onClick)}}>
+        <span role="img" aria-label="so cool">
+          😀 😎 👍 💯
+        </span>
+      </button>
+    </div>
   `,
   context: {
     onClick: action('clicked')

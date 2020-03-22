@@ -7,9 +7,9 @@ export default {
 
 export const ToStorybook = () => ({
   template: hbs`
-    <div>
-      <h3> Welcome to Storybook! </h3>
-      <button type="button" {{on "click" (fn this.onClick)}}> Button example </button>
+    <div class="story-container">
+      <h3 class="mb-2"> Welcome to Storybook! </h3>
+      <button class="btn btn-blue" type="button" {{on "click" (fn this.onClick)}}> Button example </button>
     </div>
   `,
   context: {
