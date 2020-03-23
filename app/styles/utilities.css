@@ -22,6 +22,10 @@
   @apply m-2;
 }
 
+.demo-drag-area-lg {
+  height: 30rem;
+}
+
 .card-size-standard-xs {
   @apply w-10 h-14;
 }

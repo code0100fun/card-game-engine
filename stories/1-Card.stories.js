@@ -47,3 +47,18 @@ export const Sizes = () => ({
     </div>`,
   context: {}
 });
+
+export const Dragging = () => ({
+  template: hbs`
+    <div class="story-container">
+      <DropArea class="rounded bg-blue-200 w-full demo-drag-area-lg p-2">
+        <Draggable @x={{50}} @y={{20}}>
+          <Card @size="standard" @scale="lg" />
+        </Draggable>
+        <Draggable @x={{200}} @y={{30}}>
+          <Card @size="standard" @scale="lg" />
+        </Draggable>
+      </DropArea>
+    </div>`,
+  context: {}
+});

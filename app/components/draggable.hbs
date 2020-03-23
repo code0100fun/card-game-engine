@@ -1,0 +1,8 @@
+<div
+  class="absolute"
+  style={{this.dragStyle}}
+  {{did-insert this.didInsert}}
+  {{on "mousedown" (fn this.onMouseDown)}}
+  ...attributes>
+  {{yield}}
+</div>
