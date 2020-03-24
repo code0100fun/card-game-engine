@@ -1,0 +1,11 @@
+<div
+  class="relative {{if this.dragHover @dragHoverClass}}"
+  {{on "mouseenter" (fn this.onMouseEnter)}}
+  {{on "mouseleave" (fn this.onMouseLeave)}}
+  {{did-insert this.didInsert}}
+  ...attributes>
+  {{yield (hash
+    items=this.items
+    draggable=(component 'draggable' dropZone=this)
+  )}}
+</div>

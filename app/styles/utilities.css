@@ -22,6 +22,14 @@
   @apply m-2;
 }
 
+.demo-drag-area-sm {
+  height: 10rem;
+}
+
+.demo-drag-area-md {
+  height: 20rem;
+}
+
 .demo-drag-area-lg {
   height: 30rem;
 }
