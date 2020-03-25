@@ -1,5 +1,5 @@
 <div
-  class="absolute z-10 {{if this.isDragging 'z-20 pointer-events-none'}}"
+  class="{{this.dragSnapClass}} z-10 {{if this.isDragging 'z-20 pointer-events-none'}}"
   style={{this.dragStyle}}
   {{did-insert this.didInsert}}
   {{on "mousedown" (fn this.onMouseDown)}}

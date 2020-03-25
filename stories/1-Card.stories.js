@@ -90,3 +90,35 @@ export const Dropping = () => ({
     itemsBottom: [{ size: 'standard', scale: 'lg', x: 150, y: 10 }]
   }
 });
+
+export const Snapping = () => ({
+  template: hbs`
+    <div class="story-container">
+      <DropZone @snap={{true}} @items={{this.itemsTop}} @dragHoverClass="border-gray-800" class="border-dashed border-2 border-transparent rounded bg-blue-200 w-full demo-drag-area-sm p-2 mb-2" as |zone|>
+        <div class="flex flex-row">
+          <p class="text-gray-800 mr-2">Items: {{zone.items.length}}</p>
+          {{#each zone.items as |item|}}
+            <zone.draggable @item={{item}}>
+              <div class="absolute -mt-4 ml-3 select-none font-thin text-xs z-30">x: {{item.x}} y: {{item.y}}</div>
+              <Card @size={{item.size}} @scale={{item.scale}} class="mx-1" />
+            </zone.draggable>
+          {{/each}}
+        </div>
+      </DropZone>
+      <DropZone @snap={{true}} @items={{this.itemsBottom}} @dragHoverClass="border-gray-800" class="border-dashed border-2 border-transparent rounded bg-purple-200 w-full demo-drag-area-sm p-2" as |zone|>
+        <div class="flex flex-row">
+          <p class="text-gray-800 mr-2">Items: {{zone.items.length}}</p>
+          {{#each zone.items as |item|}}
+            <zone.draggable @item={{item}}>
+              <div class="absolute -mt-4 ml-3 select-none font-thin text-xs z-30">x: {{item.x}} y: {{item.y}}</div>
+              <Card @size={{item.size}} @scale={{item.scale}} class="mx-1" />
+            </zone.draggable>
+          {{/each}}
+        </div>
+      </DropZone>
+    </div>`,
+  context: {
+    itemsTop: [{ size: 'standard', scale: 'lg' }],
+    itemsBottom: [{ size: 'standard', scale: 'lg' }]
+  }
+});

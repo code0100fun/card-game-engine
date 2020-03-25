@@ -7,6 +7,7 @@ import Dragging from '../services/dragging';
 interface DropZoneArgs {
   dragHoverClass: string;
   items: any[];
+  snap: boolean;
 }
 
 interface Point {
@@ -23,6 +24,10 @@ export default class DropZone extends Component<DropZoneArgs> {
 
   get dragHover() {
     return this.mouseOver && this.dragging.currentDragItem !== null;
+  }
+
+  get snap(): boolean {
+    return this.args.snap;
   }
 
   @action

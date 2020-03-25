@@ -21,19 +21,40 @@ export default class Draggable extends Component<DraggableArgs> {
   @tracked isDragging = false;
   dragOffsetX = 0;
   dragOffsetY = 0;
+  el: HTMLElement | null = null;
 
   get dragStyle() {
     return htmlSafe(`top: ${this.y}px; left: ${this.x}px;`);
   }
 
+  get dragSnapClass() {
+    return this.isAbsolutePosition ? 'absolute' : '';
+  }
+
+  get isAbsolutePosition() {
+    return !this.args.dropZone?.snap || this.isDragging;
+  }
+
+  recalculatePosition() {
+    if (!this.isAbsolutePosition) {
+      this.x = this.el!.offsetLeft;
+      this.y = this.el!.offsetTop;
+      set(this.args.item, 'x', this.x);
+      set(this.args.item, 'y', this.y);
+    }
+  }
+
   @action
-  didInsert() {
-    this.x = this.args.item.x;
-    this.y = this.args.item.y;
+  didInsert(el: HTMLElement) {
+    this.el = el;
+    this.x = this.args.item.x || 0;
+    this.y = this.args.item.y || 0;
+    this.recalculatePosition();
   }
 
   @action
   onMouseDown(event: MouseEvent) {
+    this.recalculatePosition();
     this.isDragging = true;
     this.dragOffsetX = event.clientX - this.x;
     this.dragOffsetY = event.clientY - this.y;
@@ -45,7 +66,7 @@ export default class Draggable extends Component<DraggableArgs> {
   }
 
   @action
-  onMouseUp(event: MouseEvent) {
+  onMouseUp(_event: MouseEvent) {
     this.isDragging = false;
     this.dragOffsetX = 0;
     this.dragOffsetY = 0;
@@ -54,6 +75,7 @@ export default class Draggable extends Component<DraggableArgs> {
     document.removeEventListener('dragstart', this.stopDragStart);
 
     this.dragging.endDrag(this.args.item, this.args.dropZone);
+    this.recalculatePosition();
   }
 
   @action
