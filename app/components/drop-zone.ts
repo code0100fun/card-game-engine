@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import Dragging from '../services/dragging';
+import Draggable from '../components/draggable';
 
 interface DropZoneArgs {
   dragHoverClass: string;
@@ -10,7 +11,7 @@ interface DropZoneArgs {
   snap: boolean;
 }
 
-interface Point {
+export interface Point {
   x: number;
   y: number;
 }
@@ -21,6 +22,7 @@ export default class DropZone extends Component<DropZoneArgs> {
   @tracked mouseOver = false;
   @tracked items: any[] | null = null;
   el: HTMLElement | null = null;
+  draggables: Draggable[] = [];
 
   get dragHover() {
     return this.mouseOver && this.dragging.currentDragItem !== null;
@@ -28,6 +30,16 @@ export default class DropZone extends Component<DropZoneArgs> {
 
   get snap(): boolean {
     return this.args.snap;
+  }
+
+  get itemCount(): number {
+    let count = 0;
+    this.items?.forEach(item => {
+      if (!item.placeholder && this.dragging.currentDragItem !== item) {
+        count++;
+      }
+    });
+    return count;
   }
 
   @action
@@ -39,6 +51,18 @@ export default class DropZone extends Component<DropZoneArgs> {
   get offset(): Point {
     const el = this.el as HTMLElement;
     return { x: el.offsetLeft, y: el.offsetTop };
+  }
+
+  addDraggable(draggable: Draggable) {
+    this.draggables.push(draggable);
+  }
+
+  removeDraggable(draggable: Draggable) {
+    this.draggables.removeObject(draggable);
+  }
+
+  recalculateDraggables() {
+    this.draggables.forEach(d => d.recalculatePosition());
   }
 
   @action

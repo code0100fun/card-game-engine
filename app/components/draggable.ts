@@ -49,7 +49,16 @@ export default class Draggable extends Component<DraggableArgs> {
     this.el = el;
     this.x = this.args.item.x || 0;
     this.y = this.args.item.y || 0;
+    if (this.args.dropZone) {
+      this.args.dropZone.addDraggable(this);
+    }
     this.recalculatePosition();
+  }
+
+  willDestroy() {
+    if (this.args.dropZone) {
+      this.args.dropZone.removeDraggable(this);
+    }
   }
 
   @action
@@ -75,7 +84,6 @@ export default class Draggable extends Component<DraggableArgs> {
     document.removeEventListener('dragstart', this.stopDragStart);
 
     this.dragging.endDrag(this.args.item, this.args.dropZone);
-    this.recalculatePosition();
   }
 
   @action
@@ -84,6 +92,7 @@ export default class Draggable extends Component<DraggableArgs> {
     this.y = event.clientY - this.dragOffsetY;
     set(this.args.item, 'x', this.x);
     set(this.args.item, 'y', this.y);
+    this.dragging.dragMove(this.args.item, this.args.dropZone);
   }
 
   stopDragStart(event: DragEvent) {
