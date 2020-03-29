@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "Small description for card-game-engine goes here",
-  "repository": "",
+  "repository": "https://github.com/code0100fun/card-game-engine.git",
   "license": "MIT",
-  "author": "",
+  "author": "Chase McCarthy",
   "directories": {
     "doc": "doc",
     "test": "tests"
