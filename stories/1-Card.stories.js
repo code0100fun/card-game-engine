@@ -53,14 +53,17 @@ export const Dragging = () => ({
     <div class="story-container">
       <DropZone class="rounded bg-blue-200 w-full demo-drag-area-lg p-2">
         <Draggable @item={{hash x=50 y=20}}>
-          <Card @size="standard" @scale="lg" />
+          <Card @image={{this.card1}} @size="standard" @scale="lg" />
         </Draggable>
         <Draggable @item={{hash x=200 y=30}}>
-          <Card @size="standard" @scale="lg" />
+          <Card @image={{this.card2}} @size="standard" @scale="lg" />
         </Draggable>
       </DropZone>
     </div>`,
-  context: {}
+  context: {
+    card1: 'https://lcgcdn.s3.amazonaws.com/mc/MC01en_1A.jpg',
+    card2: 'https://marvelcdb.com/bundles/cards/01029a.png'
+  }
 });
 
 export const Dropping = () => ({
@@ -71,7 +74,7 @@ export const Dropping = () => ({
         {{#each zone.items as |item|}}
           <zone.draggable @item={{item}}>
             <div class="absolute -mt-4 ml-3 select-none font-thin text-xs z-30">x: {{item.x}} y: {{item.y}}</div>
-            <Card @size={{item.size}} @scale={{item.scale}} class="relative" />
+            <Card @image={{item.image}} @size={{item.size}} @scale={{item.scale}} class="relative" />
           </zone.draggable>
         {{/each}}
       </DropZone>
@@ -80,14 +83,30 @@ export const Dropping = () => ({
         {{#each zone.items as |item|}}
           <zone.draggable @item={{item}}>
             <div class="absolute -mt-4 ml-3 select-none font-thin text-xs z-30">x: {{item.x}} y: {{item.y}}</div>
-            <Card @size={{item.size}} @scale={{item.scale}} />
+            <Card @image={{item.image}} @size={{item.size}} @scale={{item.scale}} />
           </zone.draggable>
         {{/each}}
       </DropZone>
     </div>`,
   context: {
-    itemsTop: [{ size: 'standard', scale: 'lg', x: 100, y: 10 }],
-    itemsBottom: [{ size: 'standard', scale: 'lg', x: 150, y: 10 }]
+    itemsTop: [
+      {
+        size: 'standard',
+        scale: 'lg',
+        x: 100,
+        y: 10,
+        image: 'https://lcgcdn.s3.amazonaws.com/mc/MC01en_1A.jpg'
+      }
+    ],
+    itemsBottom: [
+      {
+        size: 'standard',
+        scale: 'lg',
+        x: 150,
+        y: 10,
+        image: 'https://marvelcdb.com/bundles/cards/01029a.png'
+      }
+    ]
   }
 });
 
